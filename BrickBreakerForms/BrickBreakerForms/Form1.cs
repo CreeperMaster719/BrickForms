@@ -14,9 +14,12 @@ namespace BrickBreakerForms
     {
         bouncyball brickBall;
         bouncePaddles trampoline;
+
+        List<heavyBricks> bricks = new List<heavyBricks>();
+        
         Graphics gfx;
-        int x = 20;
-        int y = 20;
+        int x = 300;
+        int y = 400;
         int cw;
         int ch;
         int score;
@@ -32,6 +35,23 @@ namespace BrickBreakerForms
         {
             brickBall = new bouncyball(Brushes.White, x, y, 20, 20, 5, 5);
             trampoline = new bouncePaddles(Brushes.White, 445, 625, 200, 14, 2);
+
+            int numberColumns = 10;
+            int widthGap = 5;
+            int brickWidth = ClientSize.Width / numberColumns;
+            int numberRows = 4;
+            int heightGap = 3;
+            int brickHeight = 50;
+
+
+            for (int i = 0; i < numberRows; i++)
+            {
+                for (int j = 0; j < numberColumns; j++)
+                {
+                    bricks.Add(new heavyBricks(Brushes.Black, j * brickWidth + widthGap, i * brickHeight + heightGap, brickWidth - (widthGap * 2), brickHeight - (heightGap * 2)));
+                }
+            }
+
             gfx = CreateGraphics();
         }
 
@@ -41,6 +61,11 @@ namespace BrickBreakerForms
             brickBall.Move(cw, ch);
             brickBall.Draw(gfx);
             trampoline.Draw(gfx);
+
+            foreach(heavyBricks brick in bricks)
+            {
+                brick.Draw(gfx);
+            }
             
             
             if (brickBall.HitBox.IntersectsWith(trampoline.HitBox))
