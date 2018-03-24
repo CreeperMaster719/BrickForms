@@ -16,7 +16,7 @@ namespace BrickBreakerForms
         bouncePaddles trampoline;
 
         List<heavyBricks> bricks = new List<heavyBricks>();
-        
+        Bitmap canvas;
         Graphics gfx;
         int x = 300;
         int y = 400;
@@ -24,6 +24,10 @@ namespace BrickBreakerForms
         int ch;
         int score;
         int lives = 5;
+        int tw = 200;
+        int tx = 445;
+        bool spacialSpace;
+        bool spaceDown;
         public Form1()
         {
             InitializeComponent();
@@ -33,8 +37,10 @@ namespace BrickBreakerForms
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            brickBall = new bouncyball(Brushes.White, x, y, 20, 20, 5, 5);
-            trampoline = new bouncePaddles(Brushes.White, 445, 625, 200, 14, 2);
+            canvas = new Bitmap(mainPictureBox.Width, mainPictureBox.Height);
+            spacialSpace = true;
+            brickBall = new bouncyball(Brushes.White, x, y, 20, 20, 5, 5, spacialSpace);
+            trampoline = new bouncePaddles(Brushes.White, tx, 625, tw, 14, 2);
 
             int numberColumns = 10;
             int widthGap = 5;
@@ -52,19 +58,20 @@ namespace BrickBreakerForms
                 }
             }
 
-            gfx = CreateGraphics();
+            gfx = Graphics.FromImage(canvas);
         }
 
         private void GameRun_Tick(object sender, EventArgs e)
         {
             gfx.Clear(BackColor);
-            brickBall.Move(cw, ch);
+            brickBall.Move(cw, ch, spacialSpace);
             brickBall.Draw(gfx);
             trampoline.Draw(gfx);
 
             foreach(heavyBricks brick in bricks)
             {
                 brick.Draw(gfx);
+                
             }
             
             
@@ -84,16 +91,38 @@ namespace BrickBreakerForms
             }
             if(brickBall.y > 650)
             {
-                brickBall.Reset(x, y);
                 lives--;
+                spacialSpace = false;
+
             }
-            
+            if (!spacialSpace)
+            {
+                brickBall.Reset(trampoline.X, trampoline.W, trampoline.Y);
+                
+            }
+
             LivesLabel.Text = $"{lives}";
             if (lives == 0)
             {
                 GameRun.Enabled = false;
             }
+            if(spaceDown)
+            {
+                spacialSpace = spaceDown;
+            }
+            mainPictureBox.Image = canvas;
+            for(int i = 0; i < bricks.Count; i++)
+            {
+                if (brickBall.HitBox.IntersectsWith(bricks[i].Hitbox))
+                {
+                    score += 1000;
+                    bricks.Remove(bricks[i]);
+                    brickBall.ySpeed *= -1;
+                }
+            }
+            scoreLabel.Text = $"{score}";
         }
+
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
@@ -105,7 +134,15 @@ namespace BrickBreakerForms
             {
                 trampoline.movingRight = true;
             }
-         
+            if (e.KeyCode == Keys.Space)
+            {
+                spaceDown = true;
+            }
+            else
+            {
+                spaceDown = false;
+            }
+
         }
 
         private void Form1_KeyUp(object sender, KeyEventArgs e)
@@ -118,6 +155,7 @@ namespace BrickBreakerForms
             {
                 trampoline.movingRight = false;
             }
+
         }
 
         private void unusedLabel_Click(object sender, EventArgs e)

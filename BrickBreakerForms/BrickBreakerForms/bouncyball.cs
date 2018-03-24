@@ -13,7 +13,7 @@ namespace BrickBreakerForms
     class bouncyball
     {
 
-
+       public bool isMovable;
         public int x;
         public int xSpeed;
         public int y;
@@ -33,8 +33,9 @@ namespace BrickBreakerForms
 
 
         Brush color;
-        public bouncyball(Brush color, int x, int y, int w, int h, int xSpeed, int ySpeed)
+        public bouncyball(Brush color, int x, int y, int w, int h, int xSpeed, int ySpeed, bool isMovable)
         {
+            this.isMovable = isMovable;
             this.x = x;
             this.y = y;
             width = w;
@@ -44,9 +45,11 @@ namespace BrickBreakerForms
             this.color = color;
             
         }
-        public void Move(int ClientWidth, int ClientHeight)
+        public void Move(int ClientWidth, int ClientHeight, bool isMovable)
         {
-            x += xSpeed;
+            if(isMovable)
+            {
+           x += xSpeed;
             y += ySpeed;
             if(x + width >= ClientWidth)
             {
@@ -65,12 +68,16 @@ namespace BrickBreakerForms
                 ySpeed *= -1;
             }
         }
+            }
+ 
 
 
-        public void Reset(int x, int y)
+        public void Reset(int paddleX, int paddleWidth, int paddleHeight)
         {
-            this.x = x;
-            this.y = y;
+            x = paddleX + 10;
+            y = paddleHeight - 20;
+    
+
         }
 
         public void Draw(Graphics gfx)

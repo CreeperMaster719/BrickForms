@@ -33,6 +33,8 @@
             this.unusedLabel = new System.Windows.Forms.Label();
             this.scoreLabel = new System.Windows.Forms.Label();
             this.LivesLabel = new System.Windows.Forms.Label();
+            this.mainPictureBox = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.mainPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // GameRun
@@ -46,7 +48,7 @@
             this.unusedLabel.AutoSize = true;
             this.unusedLabel.Font = new System.Drawing.Font("Quartz MS", 69.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.unusedLabel.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.unusedLabel.Location = new System.Drawing.Point(-2687, 639);
+            this.unusedLabel.Location = new System.Drawing.Point(-2693, 639);
             this.unusedLabel.Name = "unusedLabel";
             this.unusedLabel.Size = new System.Drawing.Size(3560, 112);
             this.unusedLabel.TabIndex = 0;
@@ -79,6 +81,15 @@
             this.LivesLabel.Text = "005";
             this.LivesLabel.Click += new System.EventHandler(this.LivesLabel_Click);
             // 
+            // mainPictureBox
+            // 
+            this.mainPictureBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.mainPictureBox.Location = new System.Drawing.Point(0, 0);
+            this.mainPictureBox.Name = "mainPictureBox";
+            this.mainPictureBox.Size = new System.Drawing.Size(1194, 751);
+            this.mainPictureBox.TabIndex = 3;
+            this.mainPictureBox.TabStop = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -88,12 +99,14 @@
             this.Controls.Add(this.LivesLabel);
             this.Controls.Add(this.scoreLabel);
             this.Controls.Add(this.unusedLabel);
+            this.Controls.Add(this.mainPictureBox);
             this.Cursor = System.Windows.Forms.Cursors.No;
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyUp);
+            ((System.ComponentModel.ISupportInitialize)(this.mainPictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -105,6 +118,7 @@
         private System.Windows.Forms.Label unusedLabel;
         private System.Windows.Forms.Label scoreLabel;
         private System.Windows.Forms.Label LivesLabel;
+        private System.Windows.Forms.PictureBox mainPictureBox;
     }
 }
 
