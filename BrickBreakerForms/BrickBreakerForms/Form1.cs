@@ -26,6 +26,7 @@ namespace BrickBreakerForms
         int lives = 5;
         int tw = 200;
         int tx = 445;
+        int trampolineSupersize;
         bool spacialSpace;
         bool spaceDown;
         public Form1()
@@ -42,13 +43,13 @@ namespace BrickBreakerForms
             brickBall = new bouncyball(Brushes.White, x, y, 20, 20, 5, 5, spacialSpace);
             trampoline = new bouncePaddles(Brushes.White, tx, 625, tw, 14, 2);
 
-            int numberColumns = 10;
+            int numberColumns = 15;
             int widthGap = 5;
             int brickWidth = ClientSize.Width / numberColumns;
-            int numberRows = 4;
+            int numberRows = 15;
             int heightGap = 3;
-            int brickHeight = 50;
-
+            int brickHeight = 30;
+            
 
             for (int i = 0; i < numberRows; i++)
             {
@@ -120,6 +121,8 @@ namespace BrickBreakerForms
                     brickBall.ySpeed *= -1;
                 }
             }
+            trampolineSupersize = score / 1000;
+            trampoline.W = trampolineSupersize + tw;
             scoreLabel.Text = $"{score}";
         }
 
@@ -169,6 +172,11 @@ namespace BrickBreakerForms
         }
 
         private void scoreLabel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void mainPictureBox_Click(object sender, EventArgs e)
         {
 
         }
