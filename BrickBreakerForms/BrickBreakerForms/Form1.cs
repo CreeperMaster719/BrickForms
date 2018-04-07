@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Media;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -18,6 +19,7 @@ namespace BrickBreakerForms
         List<heavyBricks> bricks = new List<heavyBricks>();
         Bitmap canvas;
         Graphics gfx;
+        SoundPlayer meme = new SoundPlayer();
         int x = 300;
         int y = 400;
         int cw;
@@ -78,6 +80,7 @@ namespace BrickBreakerForms
             if (brickBall.HitBox.IntersectsWith(trampoline.HitBox))
             {
                 brickBall.ySpeed *= -1;
+
             }
             if(trampoline.movingLeft)
             {
