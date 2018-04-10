@@ -14,7 +14,8 @@ namespace BrickBreakerForms
     {
         bouncyball brickBall;
         bouncePaddles trampoline;
-
+        Random brickMaker;
+        
         List<heavyBricks> bricks = new List<heavyBricks>();
         Bitmap canvas;
         Graphics gfx;
@@ -42,11 +43,12 @@ namespace BrickBreakerForms
             spacialSpace = true;
             brickBall = new bouncyball(Brushes.White, x, y, 20, 20, 5, 5, spacialSpace);
             trampoline = new bouncePaddles(Brushes.White, tx, 625, tw, 14, 2);
+            brickMaker = new Random();
 
-            int numberColumns = 15;
+            int numberColumns = brickMaker.Next(10, 25);
             int widthGap = 5;
             int brickWidth = ClientSize.Width / numberColumns;
-            int numberRows = 15;
+            int numberRows = brickMaker.Next(5, 12);
             int heightGap = 3;
             int brickHeight = 30;
             
