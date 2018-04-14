@@ -20,7 +20,7 @@ namespace BrickBreakerForms
         List<heavyBricks> bricks = new List<heavyBricks>();
         Bitmap canvas;
         Graphics gfx;
-        SoundPlayer meme = new SoundPlayer();
+        SoundPlayer meme;
         int x = 300;
         int y = 400;
         int cw;
@@ -41,6 +41,7 @@ namespace BrickBreakerForms
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            meme = new SoundPlayer();
             canvas = new Bitmap(mainPictureBox.Width, mainPictureBox.Height);
             spacialSpace = true;
             brickBall = new bouncyball(Brushes.White, x, y, 20, 20, 5, 5, spacialSpace);
@@ -50,16 +51,27 @@ namespace BrickBreakerForms
             int numberColumns = brickMaker.Next(10, 25);
             int widthGap = 5;
             int brickWidth = ClientSize.Width / numberColumns;
-            int numberRows = brickMaker.Next(5, 12);
+            int numberRows = brickMaker.Next(25, 25);
             int heightGap = 3;
             int brickHeight = 30;
-            
+            int brickHealth = numberRows / 2;
+            int hCounter = 0;
 
             for (int i = 0; i < numberRows; i++)
             {
                 for (int j = 0; j < numberColumns; j++)
                 {
-                    bricks.Add(new heavyBricks(Brushes.Black, j * brickWidth + widthGap, i * brickHeight + heightGap, brickWidth - (widthGap * 2), brickHeight - (heightGap * 2)));
+                    bricks.Add(new heavyBricks( j * brickWidth + widthGap, i * brickHeight + heightGap, brickWidth - (widthGap * 2), brickHeight - (heightGap * 2), brickHealth));
+                }
+                hCounter++;
+                if(hCounter == 2)
+                {
+                    if(brickHealth > 1)
+                    {
+                        brickHealth--;
+                    }
+                    
+                    hCounter = 0;
                 }
             }
 
@@ -75,6 +87,7 @@ namespace BrickBreakerForms
 
             foreach(heavyBricks brick in bricks)
             {
+                brick.Update();
                 brick.Draw(gfx);
                 
             }
@@ -122,8 +135,17 @@ namespace BrickBreakerForms
                 if (brickBall.HitBox.IntersectsWith(bricks[i].Hitbox))
                 {
                     score += 1000;
-                    bricks.Remove(bricks[i]);
+                    meme.Play();
+                    
                     brickBall.ySpeed *= -1;
+                    if(bricks[i].health > 1)
+                    {
+                        bricks[i].health -= 1;
+                    }
+                    else
+                    {
+                        bricks.Remove(bricks[i]);
+                    }
                 }
             }
             trampolineSupersize = score / 1000;

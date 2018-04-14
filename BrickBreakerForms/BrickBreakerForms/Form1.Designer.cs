@@ -46,11 +46,12 @@
             // unusedLabel
             // 
             this.unusedLabel.AutoSize = true;
+            this.unusedLabel.BackColor = System.Drawing.Color.Black;
             this.unusedLabel.Font = new System.Drawing.Font("OCR A Extended", 69.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.unusedLabel.ForeColor = System.Drawing.SystemColors.ActiveCaption;
             this.unusedLabel.Location = new System.Drawing.Point(-4274, 655);
             this.unusedLabel.Name = "unusedLabel";
-            this.unusedLabel.Size = new System.Drawing.Size(5136, 96);
+            this.unusedLabel.Size = new System.Drawing.Size(5133, 86);
             this.unusedLabel.TabIndex = 0;
             this.unusedLabel.Text = "////////////////////////////////////////////////////////////////////////////LIVES" +
     ":   SCORE:\r\n";
@@ -59,12 +60,12 @@
             // scoreLabel
             // 
             this.scoreLabel.AutoSize = true;
-            this.scoreLabel.BackColor = System.Drawing.Color.Transparent;
+            this.scoreLabel.BackColor = System.Drawing.Color.Black;
             this.scoreLabel.Font = new System.Drawing.Font("OCR A Extended", 65.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.scoreLabel.ForeColor = System.Drawing.SystemColors.ActiveCaption;
             this.scoreLabel.Location = new System.Drawing.Point(826, 661);
             this.scoreLabel.Name = "scoreLabel";
-            this.scoreLabel.Size = new System.Drawing.Size(356, 89);
+            this.scoreLabel.Size = new System.Drawing.Size(352, 80);
             this.scoreLabel.TabIndex = 1;
             this.scoreLabel.Text = "000000";
             this.scoreLabel.Click += new System.EventHandler(this.scoreLabel_Click);
@@ -72,17 +73,19 @@
             // LivesLabel
             // 
             this.LivesLabel.AutoSize = true;
+            this.LivesLabel.BackColor = System.Drawing.Color.Black;
             this.LivesLabel.Font = new System.Drawing.Font("OCR A Extended", 65.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LivesLabel.ForeColor = System.Drawing.SystemColors.ActiveCaption;
             this.LivesLabel.Location = new System.Drawing.Point(315, 661);
             this.LivesLabel.Name = "LivesLabel";
-            this.LivesLabel.Size = new System.Drawing.Size(197, 89);
+            this.LivesLabel.Size = new System.Drawing.Size(193, 80);
             this.LivesLabel.TabIndex = 2;
             this.LivesLabel.Text = "005";
             this.LivesLabel.Click += new System.EventHandler(this.LivesLabel_Click);
             // 
             // mainPictureBox
             // 
+            this.mainPictureBox.BackColor = System.Drawing.Color.Black;
             this.mainPictureBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mainPictureBox.Location = new System.Drawing.Point(0, 0);
             this.mainPictureBox.Name = "mainPictureBox";
@@ -95,7 +98,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Navy;
+            this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(1194, 751);
             this.Controls.Add(this.LivesLabel);
             this.Controls.Add(this.scoreLabel);
