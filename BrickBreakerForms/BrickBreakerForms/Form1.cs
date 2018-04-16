@@ -51,7 +51,7 @@ namespace BrickBreakerForms
             int numberColumns = brickMaker.Next(10, 25);
             int widthGap = 5;
             int brickWidth = ClientSize.Width / numberColumns;
-            int numberRows = brickMaker.Next(25, 25);
+            int numberRows = brickMaker.Next(5, 25);
             int heightGap = 3;
             int brickHeight = 30;
             int brickHealth = numberRows / 2;
@@ -147,6 +147,15 @@ namespace BrickBreakerForms
                         bricks.Remove(bricks[i]);
                     }
                 }
+                else if (brickBall.HitBox.Y == bricks[i].Hitbox.Y && brickBall.HitBox.X + brickBall.HitBox.Width == bricks[i].Hitbox.X )
+                {
+                    brickBall.xSpeed *= -1;
+                }
+                else if (brickBall.HitBox.Y == bricks[i].Hitbox.Y && brickBall.HitBox.X == bricks[i].Hitbox.X + bricks[i].Hitbox.Width)
+                {
+                    brickBall.xSpeed *= -1;
+                }
+                
             }
             trampolineSupersize = score / 1000;
             trampoline.W = trampolineSupersize + tw;
