@@ -34,13 +34,14 @@
             this.scoreLabel = new System.Windows.Forms.Label();
             this.LivesLabel = new System.Windows.Forms.Label();
             this.mainPictureBox = new System.Windows.Forms.PictureBox();
+            this.uwin = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.mainPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // GameRun
             // 
             this.GameRun.Enabled = true;
-            this.GameRun.Interval = 10;
+            this.GameRun.Interval = 1;
             this.GameRun.Tick += new System.EventHandler(this.GameRun_Tick);
             // 
             // unusedLabel
@@ -49,7 +50,7 @@
             this.unusedLabel.BackColor = System.Drawing.Color.Black;
             this.unusedLabel.Font = new System.Drawing.Font("OCR A Extended", 69.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.unusedLabel.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.unusedLabel.Location = new System.Drawing.Point(-4274, 655);
+            this.unusedLabel.Location = new System.Drawing.Point(-3581, 1075);
             this.unusedLabel.Name = "unusedLabel";
             this.unusedLabel.Size = new System.Drawing.Size(5133, 86);
             this.unusedLabel.TabIndex = 0;
@@ -63,7 +64,7 @@
             this.scoreLabel.BackColor = System.Drawing.Color.Black;
             this.scoreLabel.Font = new System.Drawing.Font("OCR A Extended", 65.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.scoreLabel.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.scoreLabel.Location = new System.Drawing.Point(826, 661);
+            this.scoreLabel.Location = new System.Drawing.Point(1540, 1075);
             this.scoreLabel.Name = "scoreLabel";
             this.scoreLabel.Size = new System.Drawing.Size(352, 80);
             this.scoreLabel.TabIndex = 1;
@@ -76,7 +77,7 @@
             this.LivesLabel.BackColor = System.Drawing.Color.Black;
             this.LivesLabel.Font = new System.Drawing.Font("OCR A Extended", 65.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LivesLabel.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.LivesLabel.Location = new System.Drawing.Point(315, 661);
+            this.LivesLabel.Location = new System.Drawing.Point(1004, 1075);
             this.LivesLabel.Name = "LivesLabel";
             this.LivesLabel.Size = new System.Drawing.Size(193, 80);
             this.LivesLabel.TabIndex = 2;
@@ -89,17 +90,30 @@
             this.mainPictureBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mainPictureBox.Location = new System.Drawing.Point(0, 0);
             this.mainPictureBox.Name = "mainPictureBox";
-            this.mainPictureBox.Size = new System.Drawing.Size(1194, 751);
+            this.mainPictureBox.Size = new System.Drawing.Size(1904, 1161);
             this.mainPictureBox.TabIndex = 3;
             this.mainPictureBox.TabStop = false;
             this.mainPictureBox.Click += new System.EventHandler(this.mainPictureBox_Click);
+            // 
+            // uwin
+            // 
+            this.uwin.BackColor = System.Drawing.Color.Khaki;
+            this.uwin.Font = new System.Drawing.Font("Tahoma", 120F, System.Drawing.FontStyle.Italic);
+            this.uwin.ForeColor = System.Drawing.Color.Cyan;
+            this.uwin.Location = new System.Drawing.Point(387, 298);
+            this.uwin.Name = "uwin";
+            this.uwin.Size = new System.Drawing.Size(710, 201);
+            this.uwin.TabIndex = 4;
+            this.uwin.Text = "YOU WIN";
+            this.uwin.Visible = false;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
-            this.ClientSize = new System.Drawing.Size(1194, 751);
+            this.ClientSize = new System.Drawing.Size(1904, 1161);
+            this.Controls.Add(this.uwin);
             this.Controls.Add(this.LivesLabel);
             this.Controls.Add(this.scoreLabel);
             this.Controls.Add(this.unusedLabel);
@@ -123,6 +137,7 @@
         private System.Windows.Forms.Label scoreLabel;
         private System.Windows.Forms.Label LivesLabel;
         private System.Windows.Forms.PictureBox mainPictureBox;
+        private System.Windows.Forms.TextBox uwin;
     }
 }
 

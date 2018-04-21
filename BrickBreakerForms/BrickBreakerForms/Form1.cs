@@ -21,14 +21,15 @@ namespace BrickBreakerForms
         Bitmap canvas;
         Graphics gfx;
         SoundPlayer meme;
-        int x = 300;
-        int y = 400;
+        int x = 450;
+        int y = 1000;
         int cw;
         int ch;
         int score;
         int lives = 5;
         int tw = 200;
         int tx = 445;
+        bool CheatCode = false;
         int trampolineSupersize;
         bool spacialSpace;
         bool spaceDown;
@@ -41,17 +42,17 @@ namespace BrickBreakerForms
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            meme = new SoundPlayer();
+            meme = new SoundPlayer(Properties.Resources.Blip_SOUND_Effect);
             canvas = new Bitmap(mainPictureBox.Width, mainPictureBox.Height);
             spacialSpace = true;
-            brickBall = new bouncyball(Brushes.White, x, y, 20, 20, 5, 5, spacialSpace);
-            trampoline = new bouncePaddles(Brushes.White, tx, 625, tw, 14, 2);
+            brickBall = new bouncyball(Brushes.White, x, y, 20, 20, 7, 7, spacialSpace);
+            trampoline = new bouncePaddles(Brushes.White, tx, 1025, tw, 14, 2);
             brickMaker = new Random();
 
             int numberColumns = brickMaker.Next(10, 25);
             int widthGap = 5;
             int brickWidth = ClientSize.Width / numberColumns;
-            int numberRows = brickMaker.Next(5, 25);
+            int numberRows = brickMaker.Next(1, 2);
             int heightGap = 3;
             int brickHeight = 30;
             int brickHealth = numberRows / 2;
@@ -98,17 +99,29 @@ namespace BrickBreakerForms
                 brickBall.ySpeed *= -1;
 
             }
-            if(trampoline.movingLeft)
+
+
+            if (!CheatCode)
             {
-                trampoline.CheckSides(cw);
-                trampoline.X -= 5;
+
+                if (trampoline.movingLeft)
+                {
+                    trampoline.CheckSides(cw);
+                    trampoline.X -= 8;
+                }
+                if (trampoline.movingRight)
+                {
+                    trampoline.CheckSides(cw);
+                    trampoline.X += 8;
+                }
+
             }
-            if(trampoline.movingRight)
+            else
             {
-                trampoline.CheckSides(cw);
-                trampoline.X += 5;
+                trampoline.X = brickBall.x;
+
             }
-            if(brickBall.y > 650)
+            if(brickBall.y > 1050)
             {
                 lives--;
                 spacialSpace = false;
@@ -157,9 +170,14 @@ namespace BrickBreakerForms
                 }
                 
             }
+            if (bricks.Count == 0)
+            {
+                uwin.Visible = true;
+            }
             trampolineSupersize = score / 1000;
             trampoline.W = trampolineSupersize + tw;
             scoreLabel.Text = $"{score}";
+            
         }
 
 
@@ -181,7 +199,10 @@ namespace BrickBreakerForms
             {
                 spaceDown = false;
             }
-
+            if(e.KeyCode == Keys.NumPad5)
+            {
+                CheatCode = true;
+            }
         }
 
         private void Form1_KeyUp(object sender, KeyEventArgs e)

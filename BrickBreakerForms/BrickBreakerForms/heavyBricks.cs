@@ -94,6 +94,22 @@ namespace BrickBreakerForms
             {
                 color = Brushes.White;
             }
+            else if (health == 14)
+            {
+                color = Brushes.Beige;
+            }
+            else if (health == 15)
+            {
+                color = Brushes.PaleGoldenrod;
+            }
+            else if (health == 16)
+            {
+                color = Brushes.Gold;
+            }
+            else
+            {
+                color = Brushes.RosyBrown;
+            }
 
         }
 
