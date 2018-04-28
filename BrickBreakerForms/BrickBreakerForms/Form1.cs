@@ -16,7 +16,7 @@ namespace BrickBreakerForms
         bouncyball brickBall;
         bouncePaddles trampoline;
         Random brickMaker;
-        
+
         List<heavyBricks> bricks = new List<heavyBricks>();
         Bitmap canvas;
         Graphics gfx;
@@ -36,8 +36,8 @@ namespace BrickBreakerForms
         public Form1()
         {
             InitializeComponent();
-             cw = ClientSize.Width;
-             ch = ClientSize.Height;
+            cw = ClientSize.Width;
+            ch = ClientSize.Height;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -52,7 +52,7 @@ namespace BrickBreakerForms
             int numberColumns = brickMaker.Next(10, 25);
             int widthGap = 5;
             int brickWidth = ClientSize.Width / numberColumns;
-            int numberRows = brickMaker.Next(1, 2);
+            int numberRows = brickMaker.Next(10, 32);
             int heightGap = 3;
             int brickHeight = 30;
             int brickHealth = numberRows / 2;
@@ -62,16 +62,16 @@ namespace BrickBreakerForms
             {
                 for (int j = 0; j < numberColumns; j++)
                 {
-                    bricks.Add(new heavyBricks( j * brickWidth + widthGap, i * brickHeight + heightGap, brickWidth - (widthGap * 2), brickHeight - (heightGap * 2), brickHealth));
+                    bricks.Add(new heavyBricks(j * brickWidth + widthGap, i * brickHeight + heightGap, brickWidth - (widthGap * 2), brickHeight - (heightGap * 2), brickHealth));
                 }
                 hCounter++;
-                if(hCounter == 2)
+                if (hCounter == 2)
                 {
-                    if(brickHealth > 1)
+                    if (brickHealth > 1)
                     {
                         brickHealth--;
                     }
-                    
+
                     hCounter = 0;
                 }
             }
@@ -86,14 +86,14 @@ namespace BrickBreakerForms
             brickBall.Draw(gfx);
             trampoline.Draw(gfx);
 
-            foreach(heavyBricks brick in bricks)
+            foreach (heavyBricks brick in bricks)
             {
                 brick.Update();
                 brick.Draw(gfx);
-                
+
             }
-            
-            
+
+
             if (brickBall.HitBox.IntersectsWith(trampoline.HitBox))
             {
                 brickBall.ySpeed *= -1;
@@ -121,7 +121,7 @@ namespace BrickBreakerForms
                 trampoline.X = brickBall.x;
 
             }
-            if(brickBall.y > 1050)
+            if (brickBall.y > 1050)
             {
                 lives--;
                 spacialSpace = false;
@@ -130,7 +130,7 @@ namespace BrickBreakerForms
             if (!spacialSpace)
             {
                 brickBall.Reset(trampoline.X, trampoline.W, trampoline.Y);
-                
+
             }
 
             LivesLabel.Text = $"{lives}";
@@ -138,20 +138,22 @@ namespace BrickBreakerForms
             {
                 GameRun.Enabled = false;
             }
-            if(spaceDown)
+            if (spaceDown)
             {
                 spacialSpace = spaceDown;
             }
             mainPictureBox.Image = canvas;
-            for(int i = 0; i < bricks.Count; i++)
-            {
-                if (brickBall.HitBox.IntersectsWith(bricks[i].Hitbox))
+            for (int i = 0; i < bricks.Count; i++)
+            { 
+
+                if (brickBall.HitBox.Y > bricks[i].Hitbox.Y && brickBall.HitBox.X + brickBall.HitBox.Width > bricks[i].Hitbox.X)
                 {
+                    brickBall.xSpeed *= -1;
                     score += 1000;
                     meme.Play();
-                    
-                    brickBall.ySpeed *= -1;
-                    if(bricks[i].health > 1)
+
+
+                    if (bricks[i].health > 1)
                     {
                         bricks[i].health -= 1;
                     }
@@ -160,16 +162,54 @@ namespace BrickBreakerForms
                         bricks.Remove(bricks[i]);
                     }
                 }
-                else if (brickBall.HitBox.Y == bricks[i].Hitbox.Y && brickBall.HitBox.X + brickBall.HitBox.Width == bricks[i].Hitbox.X )
+                else if (brickBall.HitBox.Y > bricks[i].Hitbox.Y && brickBall.HitBox.X < bricks[i].Hitbox.X + bricks[i].Hitbox.Width)
                 {
                     brickBall.xSpeed *= -1;
+                    score += 1000;
+                    meme.Play();
+
+
+                    if (bricks[i].health > 1)
+                    {
+                        bricks[i].health -= 1;
+                    }
+                    else
+                    {
+                        bricks.Remove(bricks[i]);
+                    }
                 }
-                else if (brickBall.HitBox.Y == bricks[i].Hitbox.Y && brickBall.HitBox.X == bricks[i].Hitbox.X + bricks[i].Hitbox.Width)
+                else if (brickBall.HitBox.X > bricks[i].Hitbox.X && brickBall.HitBox.Y < bricks[i].Hitbox.Y + bricks[i].Hitbox.Height)
                 {
-                    brickBall.xSpeed *= -1;
+                    score += 1000;
+                    meme.Play();
+                    brickBall.ySpeed *= -1;
+
+                    if (bricks[i].health > 1)
+                    {
+                        bricks[i].health -= 1;
+                    }
+                    else
+                    {
+                        bricks.Remove(bricks[i]);
+                    }
                 }
-                
+                else if (brickBall.HitBox.X > bricks[i].Hitbox.X && brickBall.HitBox.Y + brickBall.HitBox.Height > bricks[i].Hitbox.Y)
+                {
+                    score += 1000;
+                    meme.Play();
+                    brickBall.ySpeed *= -1;
+
+                    if (bricks[i].health > 1)
+                    {
+                        bricks[i].health -= 1;
+                    }
+                    else
+                    {
+                        bricks.Remove(bricks[i]);
+                    }
+                }
             }
+
             if (bricks.Count == 0)
             {
                 uwin.Visible = true;
@@ -177,7 +217,7 @@ namespace BrickBreakerForms
             trampolineSupersize = score / 1000;
             trampoline.W = trampolineSupersize + tw;
             scoreLabel.Text = $"{score}";
-            
+
         }
 
 
