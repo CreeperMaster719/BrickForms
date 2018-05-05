@@ -35,6 +35,7 @@
             this.LivesLabel = new System.Windows.Forms.Label();
             this.mainPictureBox = new System.Windows.Forms.PictureBox();
             this.uwin = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.mainPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -102,10 +103,20 @@
             this.uwin.ForeColor = System.Drawing.Color.Cyan;
             this.uwin.Location = new System.Drawing.Point(387, 298);
             this.uwin.Name = "uwin";
+            this.uwin.ReadOnly = true;
             this.uwin.Size = new System.Drawing.Size(710, 201);
             this.uwin.TabIndex = 4;
             this.uwin.Text = "YOU WIN";
             this.uwin.Visible = false;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(276, 246);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(35, 13);
+            this.label1.TabIndex = 5;
+            this.label1.Text = "label1";
             // 
             // Form1
             // 
@@ -113,6 +124,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(1904, 1161);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.uwin);
             this.Controls.Add(this.LivesLabel);
             this.Controls.Add(this.scoreLabel);
@@ -138,6 +150,7 @@
         private System.Windows.Forms.Label LivesLabel;
         private System.Windows.Forms.PictureBox mainPictureBox;
         private System.Windows.Forms.TextBox uwin;
+        private System.Windows.Forms.Label label1;
     }
 }
 

@@ -90,7 +90,7 @@ namespace BrickBreakerForms
             {
                 brick.Update();
                 brick.Draw(gfx);
-
+                gfx.FillRectangle(Brushes.Brown, brick.Hitbox);
             }
 
 
@@ -145,10 +145,13 @@ namespace BrickBreakerForms
             mainPictureBox.Image = canvas;
             for (int i = 0; i < bricks.Count; i++)
             { 
-
-                if (brickBall.HitBox.Y > bricks[i].Hitbox.Y && brickBall.HitBox.X + brickBall.HitBox.Width > bricks[i].Hitbox.X)
+                if (brickBall.HitBox.IntersectsWith(bricks[i].Hitbox))
                 {
-                    brickBall.xSpeed *= -1;
+                    if (brickBall.HitBox.Top < bricks[i].Hitbox.Bottom)
+                    {
+                        brickBall.ySpeed = Math.Abs(brickBall.ySpeed);
+                    }
+
                     score += 1000;
                     meme.Play();
 
@@ -162,9 +165,13 @@ namespace BrickBreakerForms
                         bricks.Remove(bricks[i]);
                     }
                 }
-                else if (brickBall.HitBox.Y > bricks[i].Hitbox.Y && brickBall.HitBox.X < bricks[i].Hitbox.X + bricks[i].Hitbox.Width)
+               else if (brickBall.HitBox.IntersectsWith(bricks[i].Hitbox))
                 {
-                    brickBall.xSpeed *= -1;
+                    if (brickBall.HitBox.Bottom > bricks[i].Hitbox.Bottom)
+                    {
+                        brickBall.ySpeed = -Math.Abs(brickBall.ySpeed);
+                    }
+
                     score += 1000;
                     meme.Play();
 
@@ -178,11 +185,16 @@ namespace BrickBreakerForms
                         bricks.Remove(bricks[i]);
                     }
                 }
-                else if (brickBall.HitBox.X > bricks[i].Hitbox.X && brickBall.HitBox.Y < bricks[i].Hitbox.Y + bricks[i].Hitbox.Height)
+                else if (brickBall.HitBox.IntersectsWith(bricks[i].Hitbox))
                 {
+                    if (brickBall.HitBox.Left > bricks[i].Hitbox.Right)
+                    {
+                        brickBall.xSpeed = Math.Abs(brickBall.ySpeed);
+                    }
+
                     score += 1000;
                     meme.Play();
-                    brickBall.ySpeed *= -1;
+
 
                     if (bricks[i].health > 1)
                     {
@@ -193,11 +205,16 @@ namespace BrickBreakerForms
                         bricks.Remove(bricks[i]);
                     }
                 }
-                else if (brickBall.HitBox.X > bricks[i].Hitbox.X && brickBall.HitBox.Y + brickBall.HitBox.Height > bricks[i].Hitbox.Y)
+                else if (brickBall.HitBox.IntersectsWith(bricks[i].Hitbox))
                 {
+                    if (brickBall.HitBox.Right < bricks[i].Hitbox.Left)
+                    {
+                        brickBall.xSpeed = -Math.Abs(brickBall.ySpeed);
+                    }
+
                     score += 1000;
                     meme.Play();
-                    brickBall.ySpeed *= -1;
+
 
                     if (bricks[i].health > 1)
                     {
@@ -208,6 +225,74 @@ namespace BrickBreakerForms
                         bricks.Remove(bricks[i]);
                     }
                 }
+                ////brick left
+                //if (brickBall.HitBox.Y < bricks[i].Hitbox.Y && brickBall.HitBox.X + brickBall.HitBox.Width > bricks[i].Hitbox.X)
+                //{
+                //    brickBall.xSpeed = -Math.Abs(brickBall.xSpeed);
+                //    score += 1000;
+                //    meme.Play();
+
+
+                //    if (bricks[i].health > 1)
+                //    {
+                //        bricks[i].health -= 1;
+                //    }
+                //    else
+                //    {
+                //        bricks.Remove(bricks[i]);
+                //    }
+                //}
+                //else if (brickBall.HitBox.Y < bricks[i].Hitbox.Y && brickBall.HitBox.X < bricks[i].Hitbox.X + bricks[i].Hitbox.Width)
+                //{//brick right
+                //    brickBall.xSpeed = Math.Abs(brickBall.xSpeed);
+                //    score += 1000;
+                //    meme.Play();
+
+
+                //    if (bricks[i].health > 1)
+                //    {
+                //        bricks[i].health -= 1;
+                //    }
+                //    else
+                //    {
+                //        bricks.Remove(bricks[i]);
+                //    }
+                //}
+
+
+                //else if (brickBall.HitBox.X + brickBall.HitBox.Width > bricks[i].Hitbox.X && brickBall.HitBox.Y < bricks[i].Hitbox.Y + bricks[i].Hitbox.Height && )
+                //{//brick bottom
+                //    score += 1000;
+                //    meme.Play();
+                //    brickBall.ySpeed = Math.Abs(brickBall.ySpeed);
+
+                //    if (bricks[i].health > 1)
+                //    {
+                //        bricks[i].health -= 1;
+                //    }
+                //    else
+                //    {
+                //        bricks.Remove(bricks[i]);
+                //    }
+                //}
+
+
+
+                //else if (brickBall.HitBox.X > bricks[i].Hitbox.X && brickBall.HitBox.Y + brickBall.HitBox.Height < bricks[i].Hitbox.Y)
+                //{//brick top
+                //    score += 1000;
+                //    meme.Play();
+                //    brickBall.ySpeed = -Math.Abs(brickBall.ySpeed);
+
+                //    if (bricks[i].health > 1)
+                //    {
+                //        bricks[i].health -= 1;
+                //    }
+                //    else
+                //    {
+                //        bricks.Remove(bricks[i]);
+                //    }
+                //}
             }
 
             if (bricks.Count == 0)
@@ -217,6 +302,7 @@ namespace BrickBreakerForms
             trampolineSupersize = score / 1000;
             trampoline.W = trampolineSupersize + tw;
             scoreLabel.Text = $"{score}";
+          
 
         }
 
