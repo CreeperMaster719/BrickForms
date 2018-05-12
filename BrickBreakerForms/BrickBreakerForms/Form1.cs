@@ -90,7 +90,7 @@ namespace BrickBreakerForms
             {
                 brick.Update();
                 brick.Draw(gfx);
-                gfx.FillRectangle(Brushes.Brown, brick.Hitbox);
+               
             }
 
 
@@ -150,149 +150,89 @@ namespace BrickBreakerForms
                     if (brickBall.HitBox.Top < bricks[i].Hitbox.Bottom)
                     {
                         brickBall.ySpeed = Math.Abs(brickBall.ySpeed);
+                        score += 1000;
+                        meme.Play();
+
+                        if (bricks[i].health > 1)
+                        {
+                            bricks[i].health -= 1;
+                            break;
+                        }
+                        else
+                        {
+                            bricks.Remove(bricks[i]);
+                            break;
+                        }
                     }
 
-                    score += 1000;
-                    meme.Play();
 
 
-                    if (bricks[i].health > 1)
-                    {
-                        bricks[i].health -= 1;
-                    }
-                    else
-                    {
-                        bricks.Remove(bricks[i]);
-                    }
-                }
-               else if (brickBall.HitBox.IntersectsWith(bricks[i].Hitbox))
-                {
-                    if (brickBall.HitBox.Bottom > bricks[i].Hitbox.Bottom)
+
+                    if (brickBall.HitBox.Bottom > bricks[i].Hitbox.Top)
                     {
                         brickBall.ySpeed = -Math.Abs(brickBall.ySpeed);
+                        score += 1000;
+                        meme.Play();
+
+
+                        if (bricks[i].health > 1)
+                        {
+                            bricks[i].health -= 1;
+                            break;
+                        }
+                        else
+                        {
+                            bricks.Remove(bricks[i]);
+                            break;
+                        }
                     }
 
-                    score += 1000;
-                    meme.Play();
 
 
-                    if (bricks[i].health > 1)
+
+                    if (brickBall.HitBox.Left < bricks[i].Hitbox.Right)
                     {
-                        bricks[i].health -= 1;
+                        brickBall.xSpeed = Math.Abs(brickBall.xSpeed);
+                        score += 1000;
+                        meme.Play();
+
+
+                        if (bricks[i].health > 1)
+                        {
+                            bricks[i].health -= 1;
+                            break;
+                        }
+                        else
+                        {
+                            bricks.Remove(bricks[i]);
+                            break;
+                        }
                     }
-                    else
+
+
+
+                    if (brickBall.HitBox.Right > bricks[i].Hitbox.Left)
                     {
-                        bricks.Remove(bricks[i]);
+                        brickBall.xSpeed = -Math.Abs(brickBall.xSpeed);
+                        score += 1000;
+                        meme.Play();
+
+
+                        if (bricks[i].health > 1)
+                        {
+                            bricks[i].health -= 1;
+                            break;
+                        }
+                        else
+                        {
+                            bricks.Remove(bricks[i]);
+                            break;
+                        }
                     }
+
+
                 }
-                else if (brickBall.HitBox.IntersectsWith(bricks[i].Hitbox))
-                {
-                    if (brickBall.HitBox.Left > bricks[i].Hitbox.Right)
-                    {
-                        brickBall.xSpeed = Math.Abs(brickBall.ySpeed);
-                    }
 
-                    score += 1000;
-                    meme.Play();
-
-
-                    if (bricks[i].health > 1)
-                    {
-                        bricks[i].health -= 1;
-                    }
-                    else
-                    {
-                        bricks.Remove(bricks[i]);
-                    }
-                }
-                else if (brickBall.HitBox.IntersectsWith(bricks[i].Hitbox))
-                {
-                    if (brickBall.HitBox.Right < bricks[i].Hitbox.Left)
-                    {
-                        brickBall.xSpeed = -Math.Abs(brickBall.ySpeed);
-                    }
-
-                    score += 1000;
-                    meme.Play();
-
-
-                    if (bricks[i].health > 1)
-                    {
-                        bricks[i].health -= 1;
-                    }
-                    else
-                    {
-                        bricks.Remove(bricks[i]);
-                    }
-                }
-                ////brick left
-                //if (brickBall.HitBox.Y < bricks[i].Hitbox.Y && brickBall.HitBox.X + brickBall.HitBox.Width > bricks[i].Hitbox.X)
-                //{
-                //    brickBall.xSpeed = -Math.Abs(brickBall.xSpeed);
-                //    score += 1000;
-                //    meme.Play();
-
-
-                //    if (bricks[i].health > 1)
-                //    {
-                //        bricks[i].health -= 1;
-                //    }
-                //    else
-                //    {
-                //        bricks.Remove(bricks[i]);
-                //    }
-                //}
-                //else if (brickBall.HitBox.Y < bricks[i].Hitbox.Y && brickBall.HitBox.X < bricks[i].Hitbox.X + bricks[i].Hitbox.Width)
-                //{//brick right
-                //    brickBall.xSpeed = Math.Abs(brickBall.xSpeed);
-                //    score += 1000;
-                //    meme.Play();
-
-
-                //    if (bricks[i].health > 1)
-                //    {
-                //        bricks[i].health -= 1;
-                //    }
-                //    else
-                //    {
-                //        bricks.Remove(bricks[i]);
-                //    }
-                //}
-
-
-                //else if (brickBall.HitBox.X + brickBall.HitBox.Width > bricks[i].Hitbox.X && brickBall.HitBox.Y < bricks[i].Hitbox.Y + bricks[i].Hitbox.Height && )
-                //{//brick bottom
-                //    score += 1000;
-                //    meme.Play();
-                //    brickBall.ySpeed = Math.Abs(brickBall.ySpeed);
-
-                //    if (bricks[i].health > 1)
-                //    {
-                //        bricks[i].health -= 1;
-                //    }
-                //    else
-                //    {
-                //        bricks.Remove(bricks[i]);
-                //    }
-                //}
-
-
-
-                //else if (brickBall.HitBox.X > bricks[i].Hitbox.X && brickBall.HitBox.Y + brickBall.HitBox.Height < bricks[i].Hitbox.Y)
-                //{//brick top
-                //    score += 1000;
-                //    meme.Play();
-                //    brickBall.ySpeed = -Math.Abs(brickBall.ySpeed);
-
-                //    if (bricks[i].health > 1)
-                //    {
-                //        bricks[i].health -= 1;
-                //    }
-                //    else
-                //    {
-                //        bricks.Remove(bricks[i]);
-                //    }
-                //}
             }
 
             if (bricks.Count == 0)
