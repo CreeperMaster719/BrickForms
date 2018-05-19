@@ -29,7 +29,10 @@ namespace BrickBreakerForms
         int lives = 5;
         int tw = 200;
         int tx = 445;
+        int superScore = 0;
         bool CheatCode = false;
+        int ballxSpeed = 8;
+        int ballySpeed = 8;
         int trampolineSupersize;
         bool spacialSpace;
         bool spaceDown;
@@ -45,8 +48,8 @@ namespace BrickBreakerForms
             meme = new SoundPlayer(Properties.Resources.Blip_SOUND_Effect);
             canvas = new Bitmap(mainPictureBox.Width, mainPictureBox.Height);
             spacialSpace = true;
-            brickBall = new bouncyball(Brushes.White, x, y, 20, 20, 7, 7, spacialSpace);
-            trampoline = new bouncePaddles(Brushes.White, tx, 1025, tw, 14, 2);
+            brickBall = new bouncyball(Brushes.White, x, y, 20, 20, ballxSpeed, ballySpeed, spacialSpace);
+            trampoline = new bouncePaddles(Brushes.White, tx, 1025, tw, 14, 16);
             brickMaker = new Random();
 
             int numberColumns = brickMaker.Next(10, 25);
@@ -107,12 +110,12 @@ namespace BrickBreakerForms
                 if (trampoline.movingLeft)
                 {
                     trampoline.CheckSides(cw);
-                    trampoline.X -= 8;
+                    trampoline.X -= 12;
                 }
                 if (trampoline.movingRight)
                 {
                     trampoline.CheckSides(cw);
-                    trampoline.X += 8;
+                    trampoline.X += 12;
                 }
 
             }
@@ -144,80 +147,61 @@ namespace BrickBreakerForms
             }
             mainPictureBox.Image = canvas;
             for (int i = 0; i < bricks.Count; i++)
-            { 
+            {
+                bool brickHit = false;
                 if (brickBall.HitBox.IntersectsWith(bricks[i].Hitbox))
                 {
-                    if (brickBall.HitBox.Top < bricks[i].Hitbox.Bottom)
+                    if (brickBall.HitBox.IntersectsWith(bricks[i].HitboxBottom))
                     {
                         brickBall.ySpeed = Math.Abs(brickBall.ySpeed);
                         score += 1000;
+                        superScore += 1000;
                         meme.Play();
-
-                        if (bricks[i].health > 1)
-                        {
-                            bricks[i].health -= 1;
-                            break;
-                        }
-                        else
-                        {
-                            bricks.Remove(bricks[i]);
-                            break;
-                        }
+                        brickHit = true;
+                        
                     }
 
 
 
 
-                    if (brickBall.HitBox.Bottom > bricks[i].Hitbox.Top)
+                    if (brickBall.HitBox.IntersectsWith(bricks[i].HitboxTop))
                     {
                         brickBall.ySpeed = -Math.Abs(brickBall.ySpeed);
                         score += 1000;
+                        superScore += 1000;
                         meme.Play();
 
-
-                        if (bricks[i].health > 1)
-                        {
-                            bricks[i].health -= 1;
-                            break;
-                        }
-                        else
-                        {
-                            bricks.Remove(bricks[i]);
-                            break;
-                        }
+                        brickHit = true;
                     }
 
 
 
 
-                    if (brickBall.HitBox.Left < bricks[i].Hitbox.Right)
+                    if (brickBall.HitBox.IntersectsWith(bricks[i].HitboxRight))
                     {
                         brickBall.xSpeed = Math.Abs(brickBall.xSpeed);
                         score += 1000;
+                        superScore += 1000;
                         meme.Play();
 
 
-                        if (bricks[i].health > 1)
-                        {
-                            bricks[i].health -= 1;
-                            break;
-                        }
-                        else
-                        {
-                            bricks.Remove(bricks[i]);
-                            break;
-                        }
+                        brickHit = true;
                     }
 
 
 
-                    if (brickBall.HitBox.Right > bricks[i].Hitbox.Left)
+                    if (brickBall.HitBox.IntersectsWith(bricks[i].HitboxLeft))
                     {
                         brickBall.xSpeed = -Math.Abs(brickBall.xSpeed);
                         score += 1000;
+                        superScore += 1000;
                         meme.Play();
 
+                        brickHit = true;
+                    }
 
+                    if(brickHit)
+                    {
                         if (bricks[i].health > 1)
                         {
                             bricks[i].health -= 1;
@@ -229,7 +213,7 @@ namespace BrickBreakerForms
                             break;
                         }
                     }
-
+                    brickHit = false;
 
                 }
 
@@ -239,10 +223,26 @@ namespace BrickBreakerForms
             {
                 uwin.Visible = true;
             }
+
+            
+
             trampolineSupersize = score / 1000;
             trampoline.W = trampolineSupersize + tw;
             scoreLabel.Text = $"{score}";
-          
+            speedBoostBar.Value = superScore;
+            if(superScore == 100000)
+            {if (brickBall.xSpeed < 0)
+                {
+                    brickBall.xSpeed -= 2;
+                }
+                else
+                {
+
+
+                    brickBall.xSpeed += 2;
+                }
+                superScore = 0;
+            }
 
         }
 
@@ -300,6 +300,11 @@ namespace BrickBreakerForms
         }
 
         private void mainPictureBox_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void speedBoostBar_Click(object sender, EventArgs e)
         {
 
         }

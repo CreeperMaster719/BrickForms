@@ -35,6 +35,7 @@
             this.LivesLabel = new System.Windows.Forms.Label();
             this.mainPictureBox = new System.Windows.Forms.PictureBox();
             this.uwin = new System.Windows.Forms.TextBox();
+            this.speedBoostBar = new System.Windows.Forms.ProgressBar();
             ((System.ComponentModel.ISupportInitialize)(this.mainPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -50,12 +51,12 @@
             this.unusedLabel.BackColor = System.Drawing.Color.Black;
             this.unusedLabel.Font = new System.Drawing.Font("OCR A Extended", 69.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.unusedLabel.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.unusedLabel.Location = new System.Drawing.Point(-3581, 1075);
+            this.unusedLabel.Location = new System.Drawing.Point(-3246, 1066);
             this.unusedLabel.Name = "unusedLabel";
-            this.unusedLabel.Size = new System.Drawing.Size(5133, 86);
+            this.unusedLabel.Size = new System.Drawing.Size(4853, 86);
             this.unusedLabel.TabIndex = 0;
-            this.unusedLabel.Text = "////////////////////////////////////////////////////////////////////////////LIVES" +
-    ":   SCORE:\r\n";
+            this.unusedLabel.Text = "////////////////////////////////////////////////////////////SPEED BOOSTLIVES:   S" +
+    "CORE:\r\n";
             this.unusedLabel.Click += new System.EventHandler(this.unusedLabel_Click);
             // 
             // scoreLabel
@@ -64,7 +65,7 @@
             this.scoreLabel.BackColor = System.Drawing.Color.Black;
             this.scoreLabel.Font = new System.Drawing.Font("OCR A Extended", 65.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.scoreLabel.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.scoreLabel.Location = new System.Drawing.Point(1540, 1075);
+            this.scoreLabel.Location = new System.Drawing.Point(1564, 1075);
             this.scoreLabel.Name = "scoreLabel";
             this.scoreLabel.Size = new System.Drawing.Size(352, 80);
             this.scoreLabel.TabIndex = 1;
@@ -77,7 +78,7 @@
             this.LivesLabel.BackColor = System.Drawing.Color.Black;
             this.LivesLabel.Font = new System.Drawing.Font("OCR A Extended", 65.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LivesLabel.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.LivesLabel.Location = new System.Drawing.Point(1004, 1075);
+            this.LivesLabel.Location = new System.Drawing.Point(1071, 1069);
             this.LivesLabel.Name = "LivesLabel";
             this.LivesLabel.Size = new System.Drawing.Size(193, 80);
             this.LivesLabel.TabIndex = 2;
@@ -107,7 +108,16 @@
             this.uwin.TabIndex = 4;
             this.uwin.Text = "YOU WIN";
             this.uwin.Visible = false;
-
+            // 
+            // speedBoostBar
+            // 
+            this.speedBoostBar.ForeColor = System.Drawing.Color.Red;
+            this.speedBoostBar.Location = new System.Drawing.Point(137, 1139);
+            this.speedBoostBar.Maximum = 100000;
+            this.speedBoostBar.Name = "speedBoostBar";
+            this.speedBoostBar.Size = new System.Drawing.Size(607, 22);
+            this.speedBoostBar.TabIndex = 5;
+            this.speedBoostBar.Click += new System.EventHandler(this.speedBoostBar_Click);
             // 
             // Form1
             // 
@@ -115,6 +125,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(1904, 1161);
+            this.Controls.Add(this.speedBoostBar);
             this.Controls.Add(this.uwin);
             this.Controls.Add(this.LivesLabel);
             this.Controls.Add(this.scoreLabel);
@@ -140,6 +151,7 @@
         private System.Windows.Forms.Label LivesLabel;
         private System.Windows.Forms.PictureBox mainPictureBox;
         private System.Windows.Forms.TextBox uwin;
+        private System.Windows.Forms.ProgressBar speedBoostBar;
     }
 }
 

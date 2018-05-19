@@ -29,6 +29,39 @@ namespace BrickBreakerForms
                 return new Rectangle(x, y, w, h);
             }
         }
+        public Rectangle HitboxBottom
+        {
+            get
+            {
+                return new Rectangle(x, y + h / 2, w, h / 2);
+            }
+        }
+        public Rectangle HitboxTop
+        {
+            get
+            {
+                return new Rectangle(x, y, w, h / 2);
+            }
+        }
+        public Rectangle HitboxRight
+        {
+            get
+            {
+                return new Rectangle(x + w * 7 / 8, y + 6, w / 8, h - 6);
+            }
+        }
+        public Rectangle HitboxLeft
+        {
+            get
+            {
+                return new Rectangle(x, y + 6, w/8, h - 6);
+            }
+        }
+
+
+
+
+
 ///~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         public heavyBricks(int x, int y, int w, int h, int health)
         {
