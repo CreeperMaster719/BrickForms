@@ -36,12 +36,15 @@
             this.mainPictureBox = new System.Windows.Forms.PictureBox();
             this.uwin = new System.Windows.Forms.TextBox();
             this.speedBoostBar = new System.Windows.Forms.ProgressBar();
+            this.startButton = new System.Windows.Forms.Button();
+            this.diff1 = new System.Windows.Forms.Button();
+            this.diff2 = new System.Windows.Forms.Button();
+            this.diff3 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.mainPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // GameRun
             // 
-            this.GameRun.Enabled = true;
             this.GameRun.Interval = 1;
             this.GameRun.Tick += new System.EventHandler(this.GameRun_Tick);
             // 
@@ -113,11 +116,63 @@
             // 
             this.speedBoostBar.ForeColor = System.Drawing.Color.Red;
             this.speedBoostBar.Location = new System.Drawing.Point(137, 1139);
-            this.speedBoostBar.Maximum = 100000;
+            this.speedBoostBar.Maximum = 51000;
             this.speedBoostBar.Name = "speedBoostBar";
             this.speedBoostBar.Size = new System.Drawing.Size(607, 22);
             this.speedBoostBar.TabIndex = 5;
             this.speedBoostBar.Click += new System.EventHandler(this.speedBoostBar_Click);
+            // 
+            // startButton
+            // 
+            this.startButton.BackColor = System.Drawing.Color.Black;
+            this.startButton.Font = new System.Drawing.Font("Quartz MS", 150F);
+            this.startButton.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.startButton.Location = new System.Drawing.Point(180, 817);
+            this.startButton.Name = "startButton";
+            this.startButton.Size = new System.Drawing.Size(1395, 246);
+            this.startButton.TabIndex = 6;
+            this.startButton.Text = "Start!";
+            this.startButton.UseVisualStyleBackColor = false;
+            this.startButton.Click += new System.EventHandler(this.startButton_Click);
+            // 
+            // diff1
+            // 
+            this.diff1.BackColor = System.Drawing.Color.Black;
+            this.diff1.Font = new System.Drawing.Font("Quartz MS", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.diff1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.diff1.Location = new System.Drawing.Point(332, 747);
+            this.diff1.Name = "diff1";
+            this.diff1.Size = new System.Drawing.Size(350, 64);
+            this.diff1.TabIndex = 7;
+            this.diff1.Text = "Difficulty 1";
+            this.diff1.UseVisualStyleBackColor = false;
+            this.diff1.Click += new System.EventHandler(this.diff1_Click);
+            // 
+            // diff2
+            // 
+            this.diff2.BackColor = System.Drawing.Color.Black;
+            this.diff2.Font = new System.Drawing.Font("Quartz MS", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.diff2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.diff2.Location = new System.Drawing.Point(688, 747);
+            this.diff2.Name = "diff2";
+            this.diff2.Size = new System.Drawing.Size(350, 64);
+            this.diff2.TabIndex = 8;
+            this.diff2.Text = "Difficulty 2";
+            this.diff2.UseVisualStyleBackColor = false;
+            this.diff2.Click += new System.EventHandler(this.diff2_Click);
+            // 
+            // diff3
+            // 
+            this.diff3.BackColor = System.Drawing.Color.Black;
+            this.diff3.Font = new System.Drawing.Font("Quartz MS", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.diff3.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.diff3.Location = new System.Drawing.Point(1044, 747);
+            this.diff3.Name = "diff3";
+            this.diff3.Size = new System.Drawing.Size(350, 64);
+            this.diff3.TabIndex = 9;
+            this.diff3.Text = "Difficulty 3";
+            this.diff3.UseVisualStyleBackColor = false;
+            this.diff3.Click += new System.EventHandler(this.diff3_Click);
             // 
             // Form1
             // 
@@ -125,6 +180,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(1904, 1161);
+            this.Controls.Add(this.diff3);
+            this.Controls.Add(this.diff2);
+            this.Controls.Add(this.diff1);
+            this.Controls.Add(this.startButton);
             this.Controls.Add(this.speedBoostBar);
             this.Controls.Add(this.uwin);
             this.Controls.Add(this.LivesLabel);
@@ -152,6 +211,10 @@
         private System.Windows.Forms.PictureBox mainPictureBox;
         private System.Windows.Forms.TextBox uwin;
         private System.Windows.Forms.ProgressBar speedBoostBar;
+        private System.Windows.Forms.Button startButton;
+        private System.Windows.Forms.Button diff1;
+        private System.Windows.Forms.Button diff2;
+        private System.Windows.Forms.Button diff3;
     }
 }
 

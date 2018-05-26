@@ -55,7 +55,7 @@ namespace BrickBreakerForms
             int numberColumns = brickMaker.Next(10, 25);
             int widthGap = 5;
             int brickWidth = ClientSize.Width / numberColumns;
-            int numberRows = brickMaker.Next(10, 32);
+            int numberRows = brickMaker.Next(32, 32);
             int heightGap = 3;
             int brickHeight = 30;
             int brickHealth = numberRows / 2;
@@ -89,6 +89,19 @@ namespace BrickBreakerForms
             brickBall.Draw(gfx);
             trampoline.Draw(gfx);
 
+            if(brickBall.x < 0)
+            {
+                brickBall.x = 0;
+            }
+            if(brickBall.x + brickBall.width > ClientSize.Width)
+            {
+                brickBall.x -= 20; ;
+            }
+            if(brickBall.y < 0)
+            {
+                brickBall.y = 20;
+            }
+
             foreach (heavyBricks brick in bricks)
             {
                 brick.Update();
@@ -121,10 +134,10 @@ namespace BrickBreakerForms
             }
             else
             {
-                trampoline.X = brickBall.x;
+                trampoline.X = brickBall.x - brickBall.width - 50 ;
 
             }
-            if (brickBall.y > 1050)
+            if (brickBall.y >  trampoline.Y)
             {
                 lives--;
                 spacialSpace = false;
@@ -154,11 +167,8 @@ namespace BrickBreakerForms
                     if (brickBall.HitBox.IntersectsWith(bricks[i].HitboxBottom))
                     {
                         brickBall.ySpeed = Math.Abs(brickBall.ySpeed);
-                        score += 1000;
-                        superScore += 1000;
-                        meme.Play();
                         brickHit = true;
-                        
+ 
                     }
 
 
@@ -167,10 +177,6 @@ namespace BrickBreakerForms
                     if (brickBall.HitBox.IntersectsWith(bricks[i].HitboxTop))
                     {
                         brickBall.ySpeed = -Math.Abs(brickBall.ySpeed);
-                        score += 1000;
-                        superScore += 1000;
-                        meme.Play();
-
                         brickHit = true;
                     }
 
@@ -180,11 +186,6 @@ namespace BrickBreakerForms
                     if (brickBall.HitBox.IntersectsWith(bricks[i].HitboxRight))
                     {
                         brickBall.xSpeed = Math.Abs(brickBall.xSpeed);
-                        score += 1000;
-                        superScore += 1000;
-                        meme.Play();
-
-
                         brickHit = true;
                     }
 
@@ -193,15 +194,14 @@ namespace BrickBreakerForms
                     if (brickBall.HitBox.IntersectsWith(bricks[i].HitboxLeft))
                     {
                         brickBall.xSpeed = -Math.Abs(brickBall.xSpeed);
-                        score += 1000;
-                        superScore += 1000;
-                        meme.Play();
-
                         brickHit = true;
                     }
 
                     if(brickHit)
                     {
+                        score += 1000;
+                        superScore += 1000;
+                        meme.Play();
                         if (bricks[i].health > 1)
                         {
                             bricks[i].health -= 1;
@@ -229,11 +229,14 @@ namespace BrickBreakerForms
             trampolineSupersize = score / 1000;
             trampoline.W = trampolineSupersize + tw;
             scoreLabel.Text = $"{score}";
-            speedBoostBar.Value = superScore;
-            if(superScore == 100000)
-            {if (brickBall.xSpeed < 0)
+            
+            if(superScore == 50000)
+            {
+                lives += 5;
+                if (brickBall.xSpeed < 0)
                 {
                     brickBall.xSpeed -= 2;
+                    
                 }
                 else
                 {
@@ -241,8 +244,21 @@ namespace BrickBreakerForms
 
                     brickBall.xSpeed += 2;
                 }
+                if (brickBall.ySpeed < 0)
+                {
+                    brickBall.ySpeed -= 2;
+
+                }
+                else
+                {
+
+
+                    brickBall.ySpeed += 2;
+                }
                 superScore = 0;
+                
             }
+            speedBoostBar.Value = superScore;
 
         }
 
@@ -305,6 +321,26 @@ namespace BrickBreakerForms
         }
 
         private void speedBoostBar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void startButton_Click(object sender, EventArgs e)
+        {
+            GameRun.Enabled = true;
+        }
+
+        private void diff1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void diff2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void diff3_Click(object sender, EventArgs e)
         {
 
         }
