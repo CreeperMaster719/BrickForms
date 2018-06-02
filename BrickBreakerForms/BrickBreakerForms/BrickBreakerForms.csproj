@@ -88,5 +88,14 @@
   <ItemGroup>
     <None Include="Resources\Blip SOUND Effect.wav" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\retro.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\retro2.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\superPong.gif" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

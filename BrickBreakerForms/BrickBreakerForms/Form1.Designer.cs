@@ -33,14 +33,21 @@
             this.unusedLabel = new System.Windows.Forms.Label();
             this.scoreLabel = new System.Windows.Forms.Label();
             this.LivesLabel = new System.Windows.Forms.Label();
-            this.mainPictureBox = new System.Windows.Forms.PictureBox();
             this.uwin = new System.Windows.Forms.TextBox();
             this.speedBoostBar = new System.Windows.Forms.ProgressBar();
             this.startButton = new System.Windows.Forms.Button();
             this.diff1 = new System.Windows.Forms.Button();
             this.diff2 = new System.Windows.Forms.Button();
             this.diff3 = new System.Windows.Forms.Button();
+            this.superPong = new System.Windows.Forms.Label();
+            this.superPongBallGif = new System.Windows.Forms.PictureBox();
+            this.mainPictureBox = new System.Windows.Forms.PictureBox();
+            this.backgroundMenu = new System.Windows.Forms.PictureBox();
+            this.newBall = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.superPongBallGif)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mainPictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.backgroundMenu)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.newBall)).BeginInit();
             this.SuspendLayout();
             // 
             // GameRun
@@ -60,6 +67,7 @@
             this.unusedLabel.TabIndex = 0;
             this.unusedLabel.Text = "////////////////////////////////////////////////////////////SPEED BOOSTLIVES:   S" +
     "CORE:\r\n";
+            this.unusedLabel.Visible = false;
             this.unusedLabel.Click += new System.EventHandler(this.unusedLabel_Click);
             // 
             // scoreLabel
@@ -73,6 +81,7 @@
             this.scoreLabel.Size = new System.Drawing.Size(352, 80);
             this.scoreLabel.TabIndex = 1;
             this.scoreLabel.Text = "000000";
+            this.scoreLabel.Visible = false;
             this.scoreLabel.Click += new System.EventHandler(this.scoreLabel_Click);
             // 
             // LivesLabel
@@ -86,25 +95,15 @@
             this.LivesLabel.Size = new System.Drawing.Size(193, 80);
             this.LivesLabel.TabIndex = 2;
             this.LivesLabel.Text = "005";
+            this.LivesLabel.Visible = false;
             this.LivesLabel.Click += new System.EventHandler(this.LivesLabel_Click);
-            // 
-            // mainPictureBox
-            // 
-            this.mainPictureBox.BackColor = System.Drawing.Color.Black;
-            this.mainPictureBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.mainPictureBox.Location = new System.Drawing.Point(0, 0);
-            this.mainPictureBox.Name = "mainPictureBox";
-            this.mainPictureBox.Size = new System.Drawing.Size(1904, 1161);
-            this.mainPictureBox.TabIndex = 3;
-            this.mainPictureBox.TabStop = false;
-            this.mainPictureBox.Click += new System.EventHandler(this.mainPictureBox_Click);
             // 
             // uwin
             // 
             this.uwin.BackColor = System.Drawing.Color.Khaki;
             this.uwin.Font = new System.Drawing.Font("Tahoma", 120F, System.Drawing.FontStyle.Italic);
             this.uwin.ForeColor = System.Drawing.Color.Cyan;
-            this.uwin.Location = new System.Drawing.Point(387, 298);
+            this.uwin.Location = new System.Drawing.Point(509, 298);
             this.uwin.Name = "uwin";
             this.uwin.ReadOnly = true;
             this.uwin.Size = new System.Drawing.Size(710, 201);
@@ -120,11 +119,13 @@
             this.speedBoostBar.Name = "speedBoostBar";
             this.speedBoostBar.Size = new System.Drawing.Size(607, 22);
             this.speedBoostBar.TabIndex = 5;
+            this.speedBoostBar.Visible = false;
             this.speedBoostBar.Click += new System.EventHandler(this.speedBoostBar_Click);
             // 
             // startButton
             // 
             this.startButton.BackColor = System.Drawing.Color.Black;
+            this.startButton.Enabled = false;
             this.startButton.Font = new System.Drawing.Font("Quartz MS", 150F);
             this.startButton.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.startButton.Location = new System.Drawing.Point(180, 817);
@@ -174,29 +175,92 @@
             this.diff3.UseVisualStyleBackColor = false;
             this.diff3.Click += new System.EventHandler(this.diff3_Click);
             // 
+            // superPong
+            // 
+            this.superPong.AutoSize = true;
+            this.superPong.Font = new System.Drawing.Font("Quartz MS", 200.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.superPong.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.superPong.Location = new System.Drawing.Point(64, 0);
+            this.superPong.Name = "superPong";
+            this.superPong.Size = new System.Drawing.Size(1770, 321);
+            this.superPong.TabIndex = 11;
+            this.superPong.Text = "Super Pong!";
+            // 
+            // superPongBallGif
+            // 
+            this.superPongBallGif.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.superPongBallGif.Image = global::BrickBreakerForms.Properties.Resources.superPong;
+            this.superPongBallGif.Location = new System.Drawing.Point(566, 206);
+            this.superPongBallGif.Name = "superPongBallGif";
+            this.superPongBallGif.Size = new System.Drawing.Size(588, 493);
+            this.superPongBallGif.TabIndex = 12;
+            this.superPongBallGif.TabStop = false;
+            this.superPongBallGif.Click += new System.EventHandler(this.superPongBallGif_Click);
+            // 
+            // mainPictureBox
+            // 
+            this.mainPictureBox.BackColor = System.Drawing.Color.Black;
+            this.mainPictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.mainPictureBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.mainPictureBox.Enabled = false;
+            this.mainPictureBox.Location = new System.Drawing.Point(0, 0);
+            this.mainPictureBox.Name = "mainPictureBox";
+            this.mainPictureBox.Size = new System.Drawing.Size(1904, 1161);
+            this.mainPictureBox.TabIndex = 3;
+            this.mainPictureBox.TabStop = false;
+            this.mainPictureBox.Click += new System.EventHandler(this.mainPictureBox_Click);
+            // 
+            // backgroundMenu
+            // 
+            this.backgroundMenu.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.backgroundMenu.Location = new System.Drawing.Point(0, 0);
+            this.backgroundMenu.Name = "backgroundMenu";
+            this.backgroundMenu.Size = new System.Drawing.Size(1904, 1161);
+            this.backgroundMenu.TabIndex = 10;
+            this.backgroundMenu.TabStop = false;
+            this.backgroundMenu.Click += new System.EventHandler(this.backgroundMenu_Click);
+            // 
+            // newBall
+            // 
+            this.newBall.Image = global::BrickBreakerForms.Properties.Resources.superPong;
+            this.newBall.Location = new System.Drawing.Point(1832, 1032);
+            this.newBall.Name = "newBall";
+            this.newBall.Size = new System.Drawing.Size(60, 40);
+            this.newBall.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.newBall.TabIndex = 13;
+            this.newBall.TabStop = false;
+            this.newBall.Click += new System.EventHandler(this.newBall_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(1904, 1161);
+            this.Controls.Add(this.newBall);
+            this.Controls.Add(this.superPong);
+            this.Controls.Add(this.LivesLabel);
+            this.Controls.Add(this.scoreLabel);
             this.Controls.Add(this.diff3);
             this.Controls.Add(this.diff2);
             this.Controls.Add(this.diff1);
             this.Controls.Add(this.startButton);
             this.Controls.Add(this.speedBoostBar);
             this.Controls.Add(this.uwin);
-            this.Controls.Add(this.LivesLabel);
-            this.Controls.Add(this.scoreLabel);
             this.Controls.Add(this.unusedLabel);
+            this.Controls.Add(this.superPongBallGif);
             this.Controls.Add(this.mainPictureBox);
+            this.Controls.Add(this.backgroundMenu);
             this.Cursor = System.Windows.Forms.Cursors.No;
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyUp);
+            ((System.ComponentModel.ISupportInitialize)(this.superPongBallGif)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mainPictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.backgroundMenu)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.newBall)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -208,13 +272,17 @@
         private System.Windows.Forms.Label unusedLabel;
         private System.Windows.Forms.Label scoreLabel;
         private System.Windows.Forms.Label LivesLabel;
-        private System.Windows.Forms.PictureBox mainPictureBox;
         private System.Windows.Forms.TextBox uwin;
         private System.Windows.Forms.ProgressBar speedBoostBar;
         private System.Windows.Forms.Button startButton;
         private System.Windows.Forms.Button diff1;
         private System.Windows.Forms.Button diff2;
         private System.Windows.Forms.Button diff3;
+        private System.Windows.Forms.PictureBox backgroundMenu;
+        private System.Windows.Forms.PictureBox mainPictureBox;
+        private System.Windows.Forms.Label superPong;
+        private System.Windows.Forms.PictureBox superPongBallGif;
+        private System.Windows.Forms.PictureBox newBall;
     }
 }
 

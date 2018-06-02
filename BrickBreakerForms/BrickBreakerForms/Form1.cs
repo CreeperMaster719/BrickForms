@@ -24,6 +24,8 @@ namespace BrickBreakerForms
         int x = 450;
         int y = 1000;
         int cw;
+        int rand1 = 0;
+        int rand2 = 0;
         int ch;
         int score;
         int lives = 5;
@@ -52,38 +54,14 @@ namespace BrickBreakerForms
             trampoline = new bouncePaddles(Brushes.White, tx, 1025, tw, 14, 16);
             brickMaker = new Random();
 
-            int numberColumns = brickMaker.Next(10, 25);
-            int widthGap = 5;
-            int brickWidth = ClientSize.Width / numberColumns;
-            int numberRows = brickMaker.Next(32, 32);
-            int heightGap = 3;
-            int brickHeight = 30;
-            int brickHealth = numberRows / 2;
-            int hCounter = 0;
 
-            for (int i = 0; i < numberRows; i++)
-            {
-                for (int j = 0; j < numberColumns; j++)
-                {
-                    bricks.Add(new heavyBricks(j * brickWidth + widthGap, i * brickHeight + heightGap, brickWidth - (widthGap * 2), brickHeight - (heightGap * 2), brickHealth));
-                }
-                hCounter++;
-                if (hCounter == 2)
-                {
-                    if (brickHealth > 1)
-                    {
-                        brickHealth--;
-                    }
-
-                    hCounter = 0;
-                }
-            }
 
             gfx = Graphics.FromImage(canvas);
         }
 
         private void GameRun_Tick(object sender, EventArgs e)
         {
+            
             gfx.Clear(BackColor);
             brickBall.Move(cw, ch, spacialSpace);
             brickBall.Draw(gfx);
@@ -259,7 +237,7 @@ namespace BrickBreakerForms
                 
             }
             speedBoostBar.Value = superScore;
-
+            newBall.Location = new Point(brickBall.HitBox.X, brickBall.HitBox.Y);
         }
 
 
@@ -327,20 +305,90 @@ namespace BrickBreakerForms
 
         private void startButton_Click(object sender, EventArgs e)
         {
+            diff1.Visible = false;
+            diff2.Visible = false;
+            diff3.Visible = false;
+            startButton.Visible = false;
+            unusedLabel.Visible = true;
+            LivesLabel.Visible = true;
+            scoreLabel.Visible = true;
+            speedBoostBar.Visible = true;
+            startButton.Enabled = false;
+            diff1.Enabled = false;
+            diff2.Enabled = false;
+            diff3.Enabled = false;
+            superPong.Enabled = false;
+            superPong.Visible = false;
+            superPongBallGif.Visible = false;
+            superPongBallGif.Enabled = false;
+            int numberColumns = brickMaker.Next(10, 25);
+            int widthGap = 5;
+            int brickWidth = ClientSize.Width / numberColumns;
+            int numberRows = brickMaker.Next(rand1, rand2);
+            int heightGap = 3;
+            int brickHeight = 30;
+            int brickHealth = numberRows / 2;
+            int hCounter = 0;
+
+            for (int i = 0; i < numberRows; i++)
+            {
+                for (int j = 0; j < numberColumns; j++)
+                {
+                    bricks.Add(new heavyBricks(j * brickWidth + widthGap, i * brickHeight + heightGap, brickWidth - (widthGap * 2), brickHeight - (heightGap * 2), brickHealth));
+                }
+                hCounter++;
+                if (hCounter == 2)
+                {
+                    if (brickHealth > 1)
+                    {
+                        brickHealth--;
+                    }
+
+                    hCounter = 0;
+                }
+            }
+
             GameRun.Enabled = true;
         }
 
         private void diff1_Click(object sender, EventArgs e)
         {
-
+            rand1 = 2;
+            rand2 = 8;
+            startButton.Enabled = true;
         }
 
         private void diff2_Click(object sender, EventArgs e)
         {
-
+            rand1 = 6;
+            rand2 = 18;
+            startButton.Enabled = true;
         }
 
         private void diff3_Click(object sender, EventArgs e)
+        {
+            rand1 = 16;
+            rand2 = 32;
+            startButton.Enabled = true;
+        }
+
+        private void backgroundCheck_CheckedChanged(object sender, EventArgs e)
+        {
+            backgroundMenu.Image = Properties.Resources.retro2;
+            backgroundMenu.SendToBack();
+        }
+
+        private void backgroundMenu_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void superPongBallGif_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void newBall_Click(object sender, EventArgs e)
         {
 
         }
